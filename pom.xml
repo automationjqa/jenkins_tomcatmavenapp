@@ -1,0 +1,51 @@
+<project 
+    xmlns="http://maven.apache.org/POM/4.0.0" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.sarav</groupId>
+    <artifactId>TomcatMavenApp</artifactId>
+    <version>2.0</version>
+    <packaging>war</packaging>
+
+    <name>TomcatMavenApp</name> 
+        
+    <build>
+        <finalName>${project.artifactId}</finalName>
+        <plugins>
+            <plugin>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.4</version>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
+            <plugin>
+                 <groupId>com.jelastic</groupId>
+                 <artifactId>jelastic-maven-plugin</artifactId>
+                 <version>1.9.3</version>
+                 <configuration>
+                    <apiToken>${token}</apiToken> <!--an access token is used instead of a login/password, see note below-->
+                    <artifact>${artifact}</artifact> <!--artifact to be deployed-->
+                    <context>${context}</context> <!--preferable context name (ROOT if skipped)-->
+                    <environment>${envName}</environment> <!--name of a target Jelastic environment-->
+                    <comment>${comment}</comment> <!--custom comment, if needed-->
+                    <api_hoster>${hosterDomain}</api_hoster> <!--domain name of your platform-->                    
+                 </configuration>
+            </plugin>
+        </plugins>        
+    </build>
+    <pluginRepositories>
+            <pluginRepository>
+                     <id>sonatype-oss-public</id>
+                     <url>https://oss.sonatype.org/content/groups/public</url>
+                     <releases>
+                         <enabled>true</enabled>
+                     </releases>
+                     <snapshots>
+                         <enabled>true</enabled>
+                     </snapshots>
+             </pluginRepository>
+         </pluginRepositories>
+</project>
