@@ -3,7 +3,7 @@ node {
     notify('Started')
     try {
         stage('checkout') {
-        git 'https://github.com/annajel/TomcatMavenApp.git'
+        git 'https://github.com/automationjqa/TomcatMavenApp.git'
         }
         
         stage('compile, test, package') {
